@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String     @id @unique
+  username   String     @unique
+  email      String     @unique
+  full_name  String
+  password   String
+  sessions   Session[]
+  categories Category[]
+  expenses   Expense[]
+}
+
+model Session {
+  id        String   @id @unique
+  userId    String
+  expiresAt DateTime
+  user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
+}
+
+model Category {
+  id        String    @id @unique
+  userId    String
+  name      String
+  createdAt DateTime  @default(now())
+  user      User      @relation(references: [id], fields: [userId], onDelete: Cascade)
+  expenses  Expense[]
+}
+
+model Expense {
+  id          String   @id @unique
+  userId      String
+  categoryId  String
+  name        String
+  description String
+  price       Float
+  createdAt   DateTime @default(now())
+  user        User     @relation(references: [id], fields: [userId], onDelete: Cascade)
+  category    Category @relation(references: [id], fields: [categoryId], onDelete: Cascade)
+}
