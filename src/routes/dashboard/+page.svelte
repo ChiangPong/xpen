@@ -26,16 +26,16 @@
 	let bgColor: string = `bg-${$theme}-400-500-token`;
 
 	export let data;
-	let { expenses, allExpensesByDay, getTopFiveMostSpent, getTopFiveCategory } = data;
+	let { allExpensesByDay, getTopFiveMostSpent, getTopFiveCategory, getSpendDetails } = data;
 
 	let tabSet: number = 0;
 
 </script>
 
 <div class="">
-	<MinimalDetailCardList />
+	<MinimalDetailCardList totalSpent={getSpendDetails[0].total} mostSpent={getSpendDetails[0].mostSpent} totalBought={getSpendDetails[0].totalBought} mostBought={getTopFiveCategory[0].name} />
 
-	<div class="mt-4">
+	<div class="mt-10">
 		<TabGroup>
 			<Tab bind:group={tabSet} name="tab1" value={0}>
 				<span>Graphs</span>

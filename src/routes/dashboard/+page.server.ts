@@ -40,21 +40,20 @@ export const load = async () => {
 						ORDER BY DAY(expense.createdAt) ASC `;
 	};
 
-
 	const getTopFiveMostSpent = async () => {
 		return await prisma.$queryRaw`SELECT price, id, name, createdAt FROM expense ORDER BY price DESC LIMIT 5`;
 	};
 
-	const getExpense = async () => {
-		return await prisma.expense.findMany();
+	const getSpendDetails = async () => {
+		return await prisma.$queryRaw`SELECT sum(price) as total, max(price) as mostSpent, count(*) as totalBought FROM expense`;
 	};
 
 	return {
 		form,
-		expenses: await getExpense(),
 		allExpensesByDay: await allExpensesByDay(),
 		getTopFiveMostSpent: await getTopFiveMostSpent(),
 		getTopFiveCategory: await getTopFiveCategory(),
+		getSpendDetails: await getSpendDetails(),
 	};
 };
 

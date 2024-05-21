@@ -6,26 +6,35 @@
 
 	const drawerStore = getDrawerStore();
 
+	export let totalSpent: number;
+	export let totalBought: number;
+	export let mostSpent: number;
+	export let mostBought: number;
+
 	const list = [
 		{
 			'icon': 'yes1',
 			'title': 'Most Spent',
-			'body': 'Bought 10 times'
-		},
-		{
-			'icon': 'yes2',
-			'title': 'Frequently Purchased',
-			'body': 'Should be bought in bulk'
+			'type': 'money',
+			'value': mostSpent
 		},
 		{
 			'icon': 'yes3',
 			'title': 'Total Spent',
-			'body': 'THis is total amount that has been spent'
+			'type': 'money',
+			'value': totalSpent
 		},
 		{
 			'icon': 'yes4',
 			'title': 'Total Bought',
-			'body': 'This is total that has been bought'
+			'type': 'number',
+			'value': totalBought
+		},
+		{
+			'icon': 'yes2',
+			'title': 'Most Purchased',
+			'type': 'string',
+			'value': mostBought
 		}
 	];
 
@@ -66,7 +75,7 @@
 	</button>
 
 	{#each list as item}
-		<MinimalDetailCard icon={item.icon} title={item.title} body={item.body} />
+		<MinimalDetailCard icon={item.icon} title={item.title} type={item.type} value={item.value} />
 	{/each}
 </div>
 

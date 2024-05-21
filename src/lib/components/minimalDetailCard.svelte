@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
+	import { formatMoney } from '$lib/global';
 
 	export let icon: string;
 	export let title: string;
-	export let body: string;
+	export let type: string;
+
+	export let value: number;
 
 	// Retrieve user store from context
 	const theme = getContext('theme');
@@ -21,6 +24,16 @@
 	</div>
 	<div>
 		<h3 class="font-bold text-secondary-400-500-token">{title}</h3>
-		<p class="text-sm">{body}</p>
+		{#if value}
+			<p class="text-lg font-bold">
+				{#if type === 'money'}
+					{formatMoney(value)}
+				{:else if type === 'string'}
+					{value}
+				{:else}
+					{value}
+				{/if}
+			</p>
+		{/if}
 	</div>
 </div>
