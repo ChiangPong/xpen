@@ -13,25 +13,25 @@
 
 	const list = [
 		{
-			'icon': 'yes1',
+			'icon': 'trending',
 			'title': 'Most Spent',
 			'type': 'money',
 			'value': mostSpent
 		},
 		{
-			'icon': 'yes3',
+			'icon': 'wallet',
 			'title': 'Total Spent',
 			'type': 'money',
 			'value': totalSpent
 		},
 		{
-			'icon': 'yes4',
+			'icon': 'calculator',
 			'title': 'Total Bought',
 			'type': 'number',
 			'value': totalBought
 		},
 		{
-			'icon': 'yes2',
+			'icon': 'grocery',
 			'title': 'Most Purchased',
 			'type': 'string',
 			'value': mostBought

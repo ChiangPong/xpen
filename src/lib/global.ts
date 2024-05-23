@@ -1,6 +1,6 @@
 export const appName = 'Xpen.';
 export const appDescription = 'Expenses management system';
-export const appSecondaryColor: string = 'secondary';
+export const appSecondaryColor: string = 'primary';
 export const CURRENT_YEAR = new Date().getFullYear();
 
 /**
